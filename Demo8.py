@@ -31,9 +31,19 @@ print(str_array)
 '''
 reduce把一个函数作用在一个序列[x1, x2, x3, ...]上，这个函数必须接收两个参数，reduce把结果继续和序列的下一个元素做累积计算，
 
+记住 reduce 接收的两个参数 x,y  x->当前的累计  y->下一个序列
+
+所以在 lambda 表达式中有两个参数
 '''
 
 from functools import reduce
+
+# 输出0-100的 偶数
+print(list(range(1, 101)[1::2]))
+
+# 计算 0-100偶数的和
+
+print("0-100 偶数和为：%s" % reduce(lambda x, y: x + y, list(range(1, 100)[1::2])))
 
 
 # 计算list 的和
@@ -88,7 +98,8 @@ def strcut(str):
 
 def str2float(val):
     start, end = strcut(val)
-    return reduce(lambda x, y: x * 10 + y, map(char2int, start)) + reduce(lambda x, y: x / 10+y, map(char2int, end))/10
+    return reduce(lambda x, y: x * 10 + y, map(char2int, start)) + reduce(lambda x, y: x / 10 + y,
+                                                                          map(char2int, end)) / 10
 
 
 print(str2float("312.14151629"))

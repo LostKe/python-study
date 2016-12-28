@@ -25,3 +25,6 @@ output_sort_score = sorted(L, key=sort_by_score, reverse=True)  # 按成绩排�
 print(output)
 
 print(output_sort_score)
+
+
+
