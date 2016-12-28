@@ -18,9 +18,9 @@ def sort_by_score(t):
     return t[1]
 
 
-output = sorted(L, key=sort_by_name, reverse=True) # 按 姓名的首字母排序
+output = sorted(L, key=sort_by_name, reverse=True)  # 按 姓名的首字母排序
 
-output_sort_score = sorted(L, key=sort_by_score, reverse=True) # 按成绩排序
+output_sort_score = sorted(L, key=sort_by_score, reverse=True)  # 按成绩排序
 
 print(output)
 
