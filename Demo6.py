@@ -40,6 +40,7 @@ def triangles(max):
         step = step + 1
     return "done"
 
+# from functools import reduce
 
 for val in triangles(9):
     print(val)
