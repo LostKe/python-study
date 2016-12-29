@@ -8,6 +8,7 @@
 
 import functools
 
+
 def output_now(county):
     print(county + ':2016-02-03')
 
@@ -84,3 +85,44 @@ def bar():
 
 
 bar()
+
+print("======================")
+
+'''
+使用 callable 来判断一个对象 是否是可执行对象
+callable(obj, /)
+    Return whether the object is callable (i.e., some kind of function).
+'''
+
+
+def log_factory(obj):
+    if (callable(obj)):
+        @functools.wraps(obj)
+        def wapper(*args, **kwargs):
+            print("start call ==>method:%s" % obj.__name__)
+            result = obj(*args, **kwargs)
+            print("end call ==>method:%s" % obj.__name__)
+            return result
+
+        return wapper
+    else:
+        # 为字符串
+        def decorator(fun): # 必须嵌套一层来接收 函数对象参数
+            @functools.wraps(fun)
+            def wapper(*args, **kwargs):
+                print("%s: start call ==>method:%s" % (obj, fun.__name__))
+                result = fun(*args, **kwargs)
+                print("%s: end call ==>method:%s" % (obj, fun.__name__))
+                return result
+
+            return wapper
+
+        return decorator
+
+
+@log_factory(obj='debug')
+def foo():
+    print("this is foo")
+
+
+foo()
