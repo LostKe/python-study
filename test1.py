@@ -6,6 +6,16 @@
   而且这个__init__(?)的‘?‘一定要与父类列表的里面第一个有构造方法的父类的构造方法签名一样才可以。
 '''
 
+'''
+1.Python中如果子类有自己的构造函数，不会自动调用父类的构造函数，如果需要用到父类的构造函数，则需要在子类的构造函数中显式的调用。
+2.如果子类没有自己的构造函数，则会直接从父类继承构造函数，这在单继承（一个子类只从一个父类派生）中没有任何理解上的问题
+(问题：如果是多继承的情况，一个子类从多个父类派生，而子类又没有自己的构造函数，则子类默认会继承哪个父类的构造函数)
+
+3.子类从多个父类派生，而子类又没有自己的构造函数时，
+    1.按顺序继承，哪个父类在最前面且它又有自己的构造函数，就继承它的构造函数；
+    2.如果最前面第一个父类没有构造函数，则继承第2个的构造函数，第2个没有的话，再往后找，以此类推。
+'''
+
 
 class Person(object):
     def __init__(self, name, age, address):
@@ -66,6 +76,10 @@ class Worker(object):
     def company(self):
         return self.__company
 
+    @company.setter
+    def company(self, val):
+        self.__company = val
+
     def print_info(self):
         print("good at %s" % self.good_at)
 
@@ -76,6 +90,11 @@ class Xiaoming(Student, Worker):
         Worker.__init__(self, company)
 
 
+class LaoWang(Student, Worker):
+    def print_info(self):
+        print("i am laowang")
+
+
 p = Person("zs", 20, "futian sz cn")
 
 print("%s===>%s==>%s" % (p.name, p.age, p.address))
@@ -84,9 +103,13 @@ print("==================================")
 s = Student("xiaoming", 18, "shishoushi", 500)
 print("%s===>%s==>%s==>%s" % (s.name, s.age, s.address, s.score))
 
-
 print("==================================")
 xm = Xiaoming("xiaoming", 35, "shenzheng", 100, "alibaba")
 # xm = Xiaoming("alibaba")
 
 xm.print_info()
+print("=============================")
+lw = LaoWang("laowang", 50, "shishoushi", 500)
+lw.company = "富士康"
+print(lw.company)
+print(lw.address)
