@@ -8,8 +8,14 @@
 
 3)   返回修改之后的类
 
-
+__new__ 方法接收的参数依次是
+1.当前准备创建类的对象
+2.当前类的名字
+3.继承父类的集合
+4.类的方法集合
 """
+
+# 统一将类的成员变量的首字母大写
 class UpperMetaclass(type):
     # __new__ 是在__init__之前被调用的特殊方法
     def __new__(cls, future_class_name, future_class_parents, future_class_attr):
