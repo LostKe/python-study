@@ -1,6 +1,7 @@
 # coding=utf-8
 
-array = [1, 2, 3, 4, 5]
+array = []
 
-print(array[::5])
+array.append({})
 
+print(array[0])
