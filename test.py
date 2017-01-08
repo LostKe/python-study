@@ -1,7 +1,8 @@
 # coding=utf-8
 
-array = []
+str = 'adfasdf'
 
-array.append({})
+byte_str = str.encode('utf-8')
 
-print(array[0])
+print(byte_str)
+print(type(byte_str))
