@@ -56,6 +56,7 @@ print(func_build())
 
 
 def fun_a():
+    #返回的是一个函数
     return lambda x, y: x * x + y * y
 
 
