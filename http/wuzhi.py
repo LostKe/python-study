@@ -23,7 +23,7 @@ def getRes(url_head,user_id):
     url=url_head+str(user_id)
     res=requests.get(url)
     status_code = res.status_code
-    if status_code==requests.codes.ok:
+    if status_code!=302:
         return res
     else:
         print("用户：%s无法访问" % user_id)
@@ -61,7 +61,7 @@ def spider(url_head,user_id):
 @asyncio.coroutine
 def index_spider():
     for index in range(1,MAX_USER_ID):
-        r=yield from asyncio.spider(URL_HEAD,index)
+        r=yield from spider(URL_HEAD,index)
 
 
 
