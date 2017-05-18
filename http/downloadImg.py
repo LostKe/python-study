@@ -5,10 +5,7 @@
 '''
 
 import os
-from os import path
-from urllib import request
 import requests
-import re
 import requests.packages.urllib3.util.ssl_
 
 def storeImg(imgUrl,targetPath,userId):
