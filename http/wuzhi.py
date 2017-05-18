@@ -18,7 +18,7 @@ URL_HEAD = "https://wuzhi.me/u/"
 USER_AGENT = "Mozilla/4.0 (compatible; MSIE 5.5; Windows NT)"
 
 def getRes(url_head,user_id):
-    url=url_head+user_id
+    url=url_head+str(user_id)
     res=requests.get(url)
     status_code = res.status_code
     if status_code==requests.codes.ok:
