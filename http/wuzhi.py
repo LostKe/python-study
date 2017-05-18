@@ -7,7 +7,7 @@ url: https://wuzhi.me/u/xxx  需要爬取数据的地址
 import requests
 import re
 import requests.packages.urllib3.util.ssl_
-import http.downloadImg
+import downloadImg
 
 
 requests.packages.urllib3.util.ssl_.DEFAULT_CIPHERS = 'ALL'
@@ -37,4 +37,4 @@ print("用户ID:%s" % user_id)
 flower_count=soup.find(text=re.compile("×")).replace("×","")
 print("小花数量:%s" % flower_count)
 
-http.downloadImg.storeImg(img_url,IMG_STORE_PATH,user_id)
+downloadImg.storeImg(img_url,IMG_STORE_PATH,user_id)
