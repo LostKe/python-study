@@ -32,10 +32,11 @@ print("头像地址:%s" % img_url)
 
 array_temp=img_url.split("/")
 user_id=array_temp[len(array_temp)-1].split(".")[0]
-user_id=user_id.strip()
+
 print("用户ID:%s" % user_id)
 
 flower_count=soup.find(text=re.compile("×")).replace("×","")
+flower_count=flower_count.strip()
 print("小花数量:%s" % flower_count)
 
 downloadImg.storeImg(img_url,IMG_STORE_PATH,user_id)
