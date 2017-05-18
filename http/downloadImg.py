@@ -12,8 +12,11 @@ def storeImg(imgUrl,targetPath,userId):
     if isExist !=True :
         #文件夹不存在创建文件夹
         os.mkdir(targetPath)
+        print("创建文件夹:%s" % targetPath)
     #获取文件保存本地
     targetImg = targetPath + "/" + userId+".jpg"
+    #创建文件
+
     with request.urlopen(imgUrl) as _data:
         with open(targetPath,'wb') as outfile:
             outfile.write(_data.read())

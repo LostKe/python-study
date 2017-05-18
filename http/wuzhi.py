@@ -7,10 +7,8 @@ url: https://wuzhi.me/u/xxx  需要爬取数据的地址
 import requests
 import re
 import requests.packages.urllib3.util.ssl_
-import sys
 import http.downloadImg
-reload(sys)
-sys.setdefaultencoding('utf8')
+
 
 requests.packages.urllib3.util.ssl_.DEFAULT_CIPHERS = 'ALL'
 from bs4 import BeautifulSoup
