@@ -7,6 +7,10 @@
 import os
 from os import path
 from urllib import request
+import requests
+import re
+import requests.packages.urllib3.util.ssl_
+
 def storeImg(imgUrl,targetPath,userId):
     isExist=os.path.exists(targetPath)
     if isExist !=True :
@@ -17,6 +21,11 @@ def storeImg(imgUrl,targetPath,userId):
     #获取文件保存本地
     targetImg = targetPath + "/" + userId+".jpg"
     #创建文件
-    request.urlretrieve(imgUrl,targetImg)
-    print("用户:%s头像下载完毕！" % userId)
+    req=requests.Session()
+    req.headers={'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36'}
+    res=req.get(imgUrl)
+    with open(targetImg,"wb") as f:
+        f.write(res.read())
+        print("用户:%s头像下载完毕！" % userId)
+
 
