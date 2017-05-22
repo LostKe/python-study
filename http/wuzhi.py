@@ -64,7 +64,7 @@ def spider(url_head, user_id):
                 flower_count = soup.find(text=re.compile("×")).replace("×", "")
                 flower_count = flower_count.strip()
                 print("小花数量:%s" % flower_count)
-                downloadImg.storeImg(img_url, IMG_STORE_PATH, user_id)
+                downloadImg.storeImg(img_url, IMG_STORE_PATH, user_id,flower_count)
     except Exception as e:
         print("ERROR:",e)
     finally:
