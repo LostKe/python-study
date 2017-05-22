@@ -7,6 +7,7 @@
 import os
 import requests
 import requests.packages.urllib3.util.ssl_
+import db
 
 def storeImg(imgUrl,targetPath,userId):
     isExist=os.path.exists(targetPath)
@@ -16,7 +17,7 @@ def storeImg(imgUrl,targetPath,userId):
         os.makedirs(targetPath)
         print("创建文件夹:%s" % targetPath)
     #获取文件保存本地
-    targetImg = targetPath + "/" + userId+".jpg"
+    targetImg = targetPath  + userId+".jpg"
     #创建文件
     req=requests.Session()
     req.headers={'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36'}
@@ -24,5 +25,6 @@ def storeImg(imgUrl,targetPath,userId):
     with open(targetImg,"wb") as f:
         f.write(res.content)
         print("用户:%s头像下载完毕！" % userId)
+    db.inserUser(userId,userId+".jpg")
 
 
