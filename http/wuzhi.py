@@ -47,7 +47,8 @@ def spider(url_head, user_id):
 
             head = soup.find("head")
             title = soup.find("title")
-            print("作者:%s" % title.get_text())
+            user_name=title.get_text()
+            print("作者:%s" % user_name)
             siderbar_left_div = soup.find("div", {"class", "siderbar_left"})
             # 检查图片是否存在
             img = siderbar_left_div.find("div", {"class", "default_avatar"})
@@ -64,7 +65,7 @@ def spider(url_head, user_id):
                 flower_count = soup.find(text=re.compile("×")).replace("×", "")
                 flower_count = flower_count.strip()
                 print("小花数量:%s" % flower_count)
-                downloadImg.storeImg(img_url, IMG_STORE_PATH, user_id,flower_count)
+                downloadImg.storeImg(user_name,img_url, IMG_STORE_PATH, user_id,flower_count)
     except Exception as e:
         print("ERROR:",e)
     finally:

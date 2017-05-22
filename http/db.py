@@ -17,8 +17,8 @@ def getDB_Collection(col):
     return db_collection
 
 
-def inserUser(userId,img_name,flower_count):
-    inser_arg={"user_id":userId,"image_name":img_name,"flower_count":flower_count}
+def inserUser(user_name,userId,img_name,flower_count):
+    inser_arg={"user_name":user_name,"user_id":userId,"image_name":img_name,"flower_count":flower_count}
     user_collection=getDB_Collection("user")
     user_collection.insert(inser_arg)
 

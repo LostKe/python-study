@@ -9,7 +9,7 @@ import requests
 import requests.packages.urllib3.util.ssl_
 import db
 
-def storeImg(imgUrl,targetPath,userId,flower_count):
+def storeImg(user_name,imgUrl,targetPath,userId,flower_count):
     isExist=os.path.exists(targetPath)
     if isExist !=True :
         #文件夹不存在创建文件夹
@@ -25,6 +25,6 @@ def storeImg(imgUrl,targetPath,userId,flower_count):
     with open(targetImg,"wb") as f:
         f.write(res.content)
         print("用户:%s头像下载完毕！" % userId)
-    db.inserUser(userId,userId+".jpg",flower_count)
+    db.inserUser(user_name,userId,userId+".jpg",flower_count)
 
 
