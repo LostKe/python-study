@@ -78,7 +78,7 @@ def spider(url_head, user_id):
             flower_count=flower_img.parent.contents[1].replace("×", "").strip()
             print("小花数量%s" % flower_count)
             # 没有头像的也得存入db中统计
-            downloadImg.storeImg(user_name,signature,img_url, IMG_STORE_PATH, int(user_id),int(flower_count))
+            downloadImg.storeImg(user_name,signature,img_url, IMG_STORE_PATH, str(user_id),flower_count)
     except Exception as e:
         print("ERROR:",e)
     finally:

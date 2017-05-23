@@ -19,7 +19,7 @@ def getDB_Collection(col):
 
 
 def inserUser(user_name, signature, userId, img_name, flower_count):
-    inser_arg = {"user_name": user_name, "signature": signature, "user_id": userId, "image_name": img_name,
-                 "flower_count": flower_count}
+    inser_arg = {"user_name": user_name, "signature": signature, "user_id": int(userId), "image_name": img_name,
+                 "flower_count": int(flower_count)}
     user_collection = getDB_Collection("user")
     user_collection.insert(inser_arg)
