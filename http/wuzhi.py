@@ -49,23 +49,35 @@ def spider(url_head, user_id):
             title = soup.find("title")
             user_name=title.get_text()
             print("作者:%s" % user_name)
+
+            #检查个人签名是否存在
+            signature=""
+            quote=soup.find("div",{"class","quote"})
+            if quote:
+                print("用户：%s没有设置签名" % user_id)
+            else:
+                signature=quote[0].string
+                print("用户：%s签名%s" % user_id,signature)
+
             siderbar_left_div = soup.find("div", {"class", "siderbar_left"})
             # 检查图片是否存在
             img = siderbar_left_div.find("div", {"class", "default_avatar"})
-
+            img_url=""
             if img:
                 print("用户：%s头像不存在" % user_id)
                 return
             else:
                 img_url = siderbar_left_div.find("img").attrs["src"]
                 array_temp = img_url.split("/")
-                user_id = array_temp[len(array_temp) - 1].split(".")[0]
-                print("用户ID:%s" % user_id)
+                #user_id = array_temp[len(array_temp) - 1].split(".")[0]
+                #print("用户ID:%s" % user_id)
                 print("头像地址:%s" % img_url)
-                flower_count = soup.find(text=re.compile("×")).replace("×", "")
-                flower_count = flower_count.strip()
-                print("小花数量:%s" % flower_count)
-                downloadImg.storeImg(user_name,img_url, IMG_STORE_PATH, user_id,flower_count)
+            #查找小花的数量
+
+            flower_img=soup.find_all(src="/img/flower-16.png")[0]
+            print(flower_img)
+            # 没有头像的也得存入db中统计
+            #downloadImg.storeImg(user_name,img_url, IMG_STORE_PATH, int(user_id),int(flower_count))
     except Exception as e:
         print("ERROR:",e)
     finally:
