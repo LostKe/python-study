@@ -53,11 +53,11 @@ def spider(url_head, user_id):
             #检查个人签名是否存在
             signature=""
             quote=soup.find("div",{"class","quote"})
-            if quote:
+            if not quote:
                 print("用户：%s没有设置签名" % user_id)
             else:
-                signature=quote.string
-                print("用户：%s签名%s" % user_id,signature)
+                signature=quote.contents[0].string
+                print("用户：%s 签名:%s" % (user_id,signature))
 
             siderbar_left_div = soup.find("div", {"class", "siderbar_left"})
             # 检查图片是否存在
@@ -75,9 +75,10 @@ def spider(url_head, user_id):
             #查找小花的数量
 
             flower_img=soup.find_all(src="/img/flower-16.png")[0]
-            print(flower_img)
+            flower_count=flower_img.parent.contents[1]
+            print(flower_count)
             # 没有头像的也得存入db中统计
-            #downloadImg.storeImg(user_name,img_url, IMG_STORE_PATH, int(user_id),int(flower_count))
+            downloadImg.storeImg(user_name,signature,img_url, IMG_STORE_PATH, int(user_id),int(flower_count))
     except Exception as e:
         print("ERROR:",e)
     finally:
@@ -86,7 +87,7 @@ def spider(url_head, user_id):
 
 def index_spider():
     task_arry = []
-    for index in range(1, MAX_USER_ID):
+    for index in range(1, 100):
         task_arry.append(spider(URL_HEAD, index))
     return task_arry
 
