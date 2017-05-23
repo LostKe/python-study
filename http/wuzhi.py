@@ -56,7 +56,7 @@ def spider(url_head, user_id):
             if quote:
                 print("用户：%s没有设置签名" % user_id)
             else:
-                signature=quote[0].string
+                signature=quote.string
                 print("用户：%s签名%s" % user_id,signature)
 
             siderbar_left_div = soup.find("div", {"class", "siderbar_left"})
