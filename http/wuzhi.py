@@ -87,7 +87,7 @@ def spider(url_head, user_id):
 
 def index_spider():
     task_arry = []
-    for index in range(1, 100):
+    for index in range(1, MAX_USER_ID):
         task_arry.append(spider(URL_HEAD, index))
     return task_arry
 
