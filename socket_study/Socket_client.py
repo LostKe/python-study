@@ -3,8 +3,11 @@
 import socket, threading
 
 socket_client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-server_address = '115.159.91.135'
 
+# 设置服务器地址
+server_address = '127.0.0.1'
+
+# 与服务器建立连接
 socket_client.connect((server_address, 9999))
 
 
@@ -22,9 +25,10 @@ def send_msg():
     socket_client.send(b'exit')
     # socket_client.close()
 
-
+# 发送线程
 thread_send = threading.Thread(target=send_msg)
 thread_send.start()
 
+# 接收线程
 thread_receive = threading.Thread(target=recevice_msg)
 thread_receive.start()
