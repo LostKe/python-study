@@ -6,7 +6,10 @@ import threading
 server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
 server_socket.bind(('0.0.0.0', 9999))
+
+#  Enable a server to accept connections
 server_socket.listen(10)
+
 print('wating for connection')
 
 
