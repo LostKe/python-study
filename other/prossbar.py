@@ -5,7 +5,7 @@
 # @Site    : 
 # @File    : prossbar.py
 # @Software: PyCharm
-# @desc    : 进度
+# @desc    : 简单进度条实现
 
 import sys, math,time
 
